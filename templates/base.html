@@ -1,0 +1,32 @@
+{% load static django_browser_reload %}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,inital-scale=1">
+  <title>{% block title %}My pedia{% endblock %}</title>
+  <!-- Tailwind css -->
+  <link href="{% static 'css/dist/styles.css' %}" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-gray-50 text-grey-900">
+  <!-- header and navigation -->
+  <header class="bg-white shadow">
+    <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+	<a href="{% url 'blog:post_list' %}" class="text-2xl font-bold">My blog</a>
+	<nav>
+	  <a href="{% url 'admin:index' %}" class="text-sm text-gray-600 hover:text-gray-900">Admin</a>
+	</nav>
+    </div>
+  </header>
+
+<!-- contents -->
+<main class="container mx-auto px-4 py-8">
+   {% block content %}{% endblock %}
+</main>
+
+<!-- django-browser-reload: refresh -->
+{% django_browser_reload_script %}
+
+</body>
+</html>

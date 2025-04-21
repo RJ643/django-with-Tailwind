@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mx-auto p-4">
+  <h1 class="sr-only">Blog Posts</h1>
+  <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+    {% for post in posts %}
+      <a href="{{ post.get_absolute_url }}" class="group block overflow-hidden rounded-xl shadow hover:shadow-lg transition-shadow">
+        <div class="w-full aspect-w-1 aspect-h-1 bg-gray-100">
+          <img 
+            src="{{ post.thumbnail.url }}" 
+            alt="{{ post.title }}" 
+            class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-200"
+          />
+        </div>
+        <p class="mt-2 text-sm font-medium text-gray-800 truncate">
+          {{ post.title }}
+        </p>
+      </a>
+    {% empty %}
+      <p class="text-center text-gray-500">no posts.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
